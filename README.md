@@ -1,4 +1,4 @@
-#Parents Check List Tool
+# Parents Check List Tool
 Parents Check List Tool is a web application that helps parents to prepare for new family member.  
 
 
@@ -18,8 +18,6 @@ Parents Check List Tool is a web application that helps parents to prepare for n
 |ParentsCheckListToolSPA|Single Page Application|Web page with user interface|Not started|
 
 ##### Technology stack
-
-<img src="./assets/images/mySql.png"/>
 
 ![Spring Boot](./assets/images/springBoot.png "Spring Boot")
 
