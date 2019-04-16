@@ -39,6 +39,7 @@ Parents Check List Tool is a web application that helps parents to prepare for n
 - [ ] Database fields description
 - [ ] Prepare records to populate database
 - [ ] How to store images in mySQL db
+- [ ] Store passwords securely in mySQL     
 
 ###### Tasks started
 
