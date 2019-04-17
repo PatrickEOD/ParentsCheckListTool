@@ -16,13 +16,13 @@ INSERT INTO user (id, login, email) VALUES (UUID_TO_BIN(UUID()), 'kHaran', 'k.ha
 ========================================================================================================================
 
 CREATE TABLE user_details (
-                              id BINARY(16) PRIMARY KEY NOT NULL,
-                              login VARCHAR(70) NOT NULL UNIQUE,
-                              registration_date DATE NOT NULL,
-                              name VARCHAR(100),
-                              surname VARCHAR(120),
-                              birth_date DATE,
-                              FOREIGN KEY (login) REFERENCES user(login)
+    id BINARY(16) PRIMARY KEY NOT NULL,
+    login VARCHAR(70) NOT NULL UNIQUE,
+    registration_date DATE NOT NULL,
+    name VARCHAR(100),
+    surname VARCHAR(120),
+    birth_date DATE,
+    FOREIGN KEY (login) REFERENCES user(login)
 );
 
 INSERT INTO user_details (id, login, registration_date, name, surname, birth_date) VALUES (UUID_TO_BIN(UUID()), 'jKowalski', '2019-03-12', 'Jan', 'Kowalski', '1980-07-17');
@@ -33,10 +33,10 @@ INSERT INTO user_details (id, login, registration_date, name, surname, birth_dat
 ========================================================================================================================
 
 CREATE TABLE passwds (
-                         id BINARY(16) NOT NULL PRIMARY KEY,
-                         login VARCHAR(70) NOT NULL UNIQUE,
-                         passwd BLOB NOT NULL,
-                         FOREIGN KEY (login) REFERENCES user(login)
+    id BINARY(16) NOT NULL PRIMARY KEY,
+    login VARCHAR(70) NOT NULL UNIQUE,
+    passwd BLOB NOT NULL,
+    FOREIGN KEY (login) REFERENCES user(login)
 );
 
 INSERT INTO passwds (id, login, passwd) VALUES (UUID_TO_BIN(UUID()), 'jKowalski', AES_ENCRYPT('jKowalskiPassword', 'customSalt'));
@@ -45,3 +45,24 @@ INSERT INTO passwds (id, login, passwd) VALUES (UUID_TO_BIN(UUID()), 'aKornalska
 INSERT INTO passwds (id, login, passwd) VALUES (UUID_TO_BIN(UUID()), 'kHaran', AES_ENCRYPT('kHaranPassword', 'customSalt'));
 
 ========================================================================================================================
+
+CREATE TABLE img_src (
+                         id BINARY(16) NOT NULL PRIMARY KEY,
+                         name VARCHAR(120),
+                         img LONGBLOB
+);
+
+========================================================================================================================
+
+CREATE TABLE shopping_list (
+                               id BINARY(16) NOT NULL PRIMARY KEY,
+                               item_name VARCHAR(250) NOT NULL UNIQUE,
+                               item_price_range VARCHAR(250) NOT NULL,
+                               currency VARCHAR(50),
+                               recomm_amount DECIMAL(10,2),
+                               img INTEGER,
+                               description TEXT,
+                               characteristic TEXT,
+                               category VARCHAR(120),
+                               FOREIGN KEY (img) REFERENCES img_src(name)
+);

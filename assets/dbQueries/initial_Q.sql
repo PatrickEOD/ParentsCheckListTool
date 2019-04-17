@@ -51,3 +51,30 @@ INSERT INTO passwds (id, login, passwd) VALUES (UUID_TO_BIN(UUID()), 'kHaran', A
 truncate table passwds;
 select * from passwds;
 select AES_DECRYPT(passwd, 'customSalt') as unecrptedPasswd, BIN_TO_UUID(id) as id, login from passwds;
+
+CREATE TABLE img_src (
+id BINARY(16) NOT NULL PRIMARY KEY,
+name VARCHAR(120),
+img LONGBLOB
+);
+INSERT INTO img_src (id, name, img) VALUES (UUID_TO_BIN(UUID()), 'chusteczki_nawilzane', LOAD_FILE('C:\\DataMatrix\\Projects\\Proj1_ParentsCheckListTool\\workspace\\ParentsCheckListToolAPI\\web\\images\\shopping_list\\chusteczki_nawilzane.png')); 
+select * from img_src;
+truncate table img_src;
+drop table img_src;
+set foreign_key_checks = 0;
+set foreign_key_checks = 1;
+
+
+CREATE TABLE shopping_list (
+id BINARY(16) NOT NULL PRIMARY KEY,
+item_name VARCHAR(250) NOT NULL UNIQUE,
+item_price_range VARCHAR(250) NOT NULL,
+currency VARCHAR(50),
+recomm_amount DECIMAL(10,2),
+img INTEGER,
+description TEXT,
+characteristic TEXT,
+category VARCHAR(120),
+FOREIGN KEY (img) REFERENCES img_src(name)
+);
+drop table shopping_list;
