@@ -53,28 +53,46 @@ select * from passwds;
 select AES_DECRYPT(passwd, 'customSalt') as unecrptedPasswd, BIN_TO_UUID(id) as id, login from passwds;
 
 CREATE TABLE img_src (
-id BINARY(16) NOT NULL PRIMARY KEY,
+id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
 name VARCHAR(120),
-img LONGBLOB
+img varchar(250)
 );
-INSERT INTO img_src (id, name, img) VALUES (UUID_TO_BIN(UUID()), 'chusteczki_nawilzane', LOAD_FILE('C:\\DataMatrix\\Projects\\Proj1_ParentsCheckListTool\\workspace\\ParentsCheckListToolAPI\\web\\images\\shopping_list\\chusteczki_nawilzane.png')); 
+INSERT INTO img_src (id, name, img) VALUES (UUID_TO_BIN(UUID()), 'chusteczki_nawilzane', LOAD_FILE('C:/DataMatrix/Projects/Proj1_ParentsCheckListTool/workspace/ParentsCheckListToolAPI/web/images/shopping_list/chusteczki_nawilzane.png')); 
+INSERT INTO img_src (id, name, img) VALUES (UUID_TO_BIN(UUID()), 'chusteczki_nawilzane', LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pclt_db_upload/chusteczki_nawilzane')); 
+INSERT INTO img_src (id, name, img) VALUES (UUID_TO_BIN(UUID()), 'chusteczki_nawilzane', 'web/images/shopping_list/chusteczki_nawilzane.png');
+INSERT INTO img_src (id, name, img) VALUES (1, 'chusteczki_nawilzane', 'web/images/shopping_list/chusteczki_nawilzane.png');
 select * from img_src;
+select BIN_TO_UUID(id) id, name, img from img_src;
 truncate table img_src;
 drop table img_src;
 set foreign_key_checks = 0;
 set foreign_key_checks = 1;
 
+CREATE TABLE categories (
+id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+category VARCHAR(120)
+);
+
+CREATE TABLE shopingList_categories (
+shoppingList_id INTEGER NOT NULL,
+categories_id INTEGER NOT NULL,
+FOREIGN KEY (shoppingList_id) REFERENCES shopping_list(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+FOREIGN KEY (categories_id) REFERENCES categories(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+PRIMARY KEY (shoppingList_id, categories_id)
+);
 
 CREATE TABLE shopping_list (
-id BINARY(16) NOT NULL PRIMARY KEY,
+id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 item_name VARCHAR(250) NOT NULL UNIQUE,
-item_price_range VARCHAR(250) NOT NULL,
+item_price_from DECIMAL(10,2),
+item_price_to DECIMAL(10,2),
 currency VARCHAR(50),
 recomm_amount DECIMAL(10,2),
-img INTEGER,
+imgSrc_id INTEGER,
 description TEXT,
 characteristic TEXT,
 category VARCHAR(120),
-FOREIGN KEY (img) REFERENCES img_src(name)
+FOREIGN KEY (imgSrc_id) REFERENCES img_src(id)
 );
 drop table shopping_list;
+describe shopping_list;
