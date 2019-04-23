@@ -29,17 +29,18 @@ Parents Check List Tool is a web application that helps parents to prepare for n
 
 ##### TODO
 
-- [ ] Create API project
+- [x] Create API project
 - [ ] Add dependencies
 - [ ] Create SPA project
 - [ ] Connect REST endpoints to frontend
 - [ ] SetUp Database
 - [ ] Test simple version of JSON communication
 - [ ] Interface specification (JSON fields)
-- [ ] Database fields description
+- [x] Database fields description
 - [ ] Prepare records to populate database
-- [ ] How to store images in mySQL db
-- [ ] Store passwords securely in mySQL     
+- [x] How to store images in mySQL db
+- [ ] Store passwords securely in mySQL  
+- [ ] JWT toket security   
 
 ###### Tasks started
 

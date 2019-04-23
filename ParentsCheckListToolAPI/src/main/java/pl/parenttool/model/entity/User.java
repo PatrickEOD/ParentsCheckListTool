@@ -1,17 +1,13 @@
-package pl.parenttool.model;
+package pl.parenttool.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 @Table(name = "user")
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
 public class User {
@@ -24,11 +20,11 @@ public class User {
     @Column(name = "login")
     private String login;
 
-    @Column(name = "login")
+    @Column(name = "email")
     private String email;
 
     @Column(name = "user_details")
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name  ="userDetails", referencedColumnName = "id")
+    @JoinColumn(name = "userDetails", referencedColumnName = "id")
     private UserDetails userDetails;
 }

@@ -3,6 +3,7 @@ package pl.parenttool.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -14,6 +15,7 @@ import javax.persistence.EntityManagerFactory;
 @EnableWebMvc
 @ComponentScan(basePackages = "pl.parenttool")
 @EnableJpaRepositories(basePackages = "pl.parenttool.repository")
+@PropertySource("classpath:application.properties")
 @EnableTransactionManagement
 public class AppConfig {
 
