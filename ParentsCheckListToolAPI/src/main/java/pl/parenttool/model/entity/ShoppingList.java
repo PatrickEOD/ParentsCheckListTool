@@ -1,5 +1,6 @@
 package pl.parenttool.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -36,7 +37,7 @@ public class ShoppingList {
 
     @Column(name = "img_src")
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "img", referencedColumnName = "id")
+    @JoinColumn(name = "img_id", referencedColumnName = "id")
     private ImgSrc img;
 
     @Column(name = "description", columnDefinition = "text")
@@ -47,5 +48,10 @@ public class ShoppingList {
 
     @Column(name = "category")
     private String category;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "userShoppingList_id")
+    private UserShoppingList userShoppingList;
 
 }

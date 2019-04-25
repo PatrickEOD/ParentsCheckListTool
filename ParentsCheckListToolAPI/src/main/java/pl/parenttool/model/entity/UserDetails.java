@@ -1,12 +1,14 @@
 package pl.parenttool.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -20,6 +22,10 @@ public class UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private UUID id;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "userDetails")
+    private User user;
 
     @Column(name = "login")
     @OneToOne(mappedBy = "userDetails")
@@ -39,6 +45,7 @@ public class UserDetails {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthDate;
 
+    @OneToOne
     @Column(name = "user_shopping_list")
     private List<UserShoppingList> userShoppingList;
 

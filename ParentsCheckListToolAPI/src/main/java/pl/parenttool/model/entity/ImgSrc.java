@@ -1,5 +1,6 @@
 package pl.parenttool.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,7 @@ public class ImgSrc {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "name")
@@ -22,4 +24,8 @@ public class ImgSrc {
 
     @Column(name = "img", columnDefinition = "text")
     private String img;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "img")
+    private ShoppingList shoppingList;
 }

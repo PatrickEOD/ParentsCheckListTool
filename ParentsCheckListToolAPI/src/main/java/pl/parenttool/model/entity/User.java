@@ -25,6 +25,6 @@ public class User {
 
     @Column(name = "user_details")
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userDetails", referencedColumnName = "id")
+    @JoinColumn(name = "userDetails_id", referencedColumnName = "id")
     private UserDetails userDetails;
 }
