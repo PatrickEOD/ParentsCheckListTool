@@ -5,18 +5,21 @@ import org.springframework.stereotype.Service;
 import pl.parenttool.model.entity.User;
 import pl.parenttool.repository.UserRepository;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
-
     @Autowired
-    public void setUserService (UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
 
     @Override
     public User getUserByLogin(String login) {
         return userRepository.findByLogin(login);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return getAllUsers();
     }
 }

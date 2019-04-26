@@ -23,8 +23,8 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "user_details")
+//    @Column(name = "user_details")
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userDetails_id", referencedColumnName = "id")
+    @JoinColumn(name = "userDetails", referencedColumnName = "id")
     private UserDetails userDetails;
 }

@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,7 +27,7 @@ public class UserDetails {
     @OneToOne(mappedBy = "userDetails")
     private User user;
 
-    @Column(name = "login")
+//    @Column(name = "login")
     @OneToOne(mappedBy = "userDetails")
     private String login;
 
@@ -46,7 +46,7 @@ public class UserDetails {
     private Date birthDate;
 
     @OneToOne
-    @Column(name = "user_shopping_list")
+//    @Column(name = "user_shopping_list")
     private List<UserShoppingList> userShoppingList;
 
 }

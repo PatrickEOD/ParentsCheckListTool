@@ -35,9 +35,9 @@ public class ShoppingList {
     @Column(name = "recomm_amount")
     private Double recommendedAmount;
 
-    @Column(name = "img_src")
+//    @Column(name = "img_src")
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "img_id", referencedColumnName = "id")
+    @JoinColumn(name = "img_src", referencedColumnName = "id")
     private ImgSrc img;
 
     @Column(name = "description", columnDefinition = "text")
